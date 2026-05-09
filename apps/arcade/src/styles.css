@@ -224,9 +224,40 @@ input:disabled {
   align-items: center;
 }
 
+.icon-button.danger {
+  background: #8b332b;
+}
+
 .icon-button svg {
   width: 18px;
   height: 18px;
+}
+
+.hint-panel {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  background: #fff8e6;
+  border: 1px solid #e3c572;
+  border-radius: 8px;
+}
+
+.hint-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hint-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 10px;
+  color: #3c3216;
+  background: #f4d985;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 800;
 }
 
 .history {

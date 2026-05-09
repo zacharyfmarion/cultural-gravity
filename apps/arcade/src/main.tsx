@@ -1,6 +1,6 @@
 import { StrictMode, useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { Orbit, RotateCcw, Share2 } from "lucide-react";
+import { Flag, Lightbulb, Orbit, RotateCcw, Share2 } from "lucide-react";
 import "./styles.css";
 
 type MovieId = string | number;
@@ -81,8 +81,8 @@ function Arcade() {
           <span>Cultural Gravity</span>
         </div>
         <div className="game-note">
-          <strong>No hints.</strong>
-          <span>Every known movie guess returns only its rank in the embedding space.</span>
+          <strong>Rank first.</strong>
+          <span>Optional hints and give up are available when you want to inspect the embedding neighborhood.</span>
         </div>
       </aside>
       {loading ? <StatusSurface title="Loading the culture cloud" /> : null}
@@ -97,7 +97,11 @@ function GameSurface({ data }: { data: GameData }) {
   const storageKey = `cultural-gravity:${data.daily.date}:${data.daily.answerId}`;
   const [guess, setGuess] = useState("");
   const [history, setHistory] = useStoredHistory(storageKey);
+  const [hintCount, setHintCount] = useStoredNumber(`${storageKey}:hints`, 0);
+  const [gaveUp, setGaveUp] = useStoredBoolean(`${storageKey}:gave-up`, false);
   const solved = history.some((record) => record.isExact);
+  const locked = solved || gaveUp;
+  const hintMovies = useMemo(() => getHintMovies(data, history, hintCount), [data, history, hintCount]);
   const sortedHistory = useMemo(
     () => [...history].sort((left, right) => Number(left.rank ?? Infinity) - Number(right.rank ?? Infinity)),
     [history],
@@ -105,7 +109,7 @@ function GameSurface({ data }: { data: GameData }) {
 
   function submitGuess(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (solved || guess.trim().length === 0) return;
+    if (locked || guess.trim().length === 0) return;
 
     const result = scoreGuess(guess, data);
     if (history.some((record) => record.normalizedGuess === result.normalizedGuess)) {
@@ -124,6 +128,21 @@ function GameSurface({ data }: { data: GameData }) {
     setGuess("");
   }
 
+  function useHint() {
+    if (solved) return;
+    setHintCount(Math.min(hintCount + 1, 5));
+  }
+
+  function giveUp() {
+    setGaveUp(true);
+  }
+
+  function resetToday() {
+    setHistory([]);
+    setHintCount(0);
+    setGaveUp(false);
+  }
+
   async function shareResult() {
     const marks = history
       .map((record) => {
@@ -135,7 +154,7 @@ function GameSurface({ data }: { data: GameData }) {
       .join("");
     const text = [
       `Cultural Gravity ${data.daily.date}`,
-      solved ? `Solved in ${history.length}` : `${history.length} guesses`,
+      solved ? `Solved in ${history.length}` : gaveUp && answer ? `Gave up: ${answer.title}` : `${history.length} guesses`,
       marks,
       window.location.href,
     ].join("\n");
@@ -162,21 +181,27 @@ function GameSurface({ data }: { data: GameData }) {
       <section className="puzzle-band" aria-label="Current puzzle">
         <div>
           <span className="date-chip">{data.daily.date}</span>
-          <h2>{solved && answer ? `Solved: ${answer.title}` : "Guess the hidden movie. Lower ranks are closer."}</h2>
+          <h2>
+            {(solved || gaveUp) && answer
+              ? `Answer: ${answer.title}${answer.year ? ` (${answer.year})` : ""}`
+              : "Guess the hidden movie. Lower ranks are closer."}
+          </h2>
         </div>
-        <div className={solved ? "status-pill solved" : "status-pill"}>{solved ? "Solved" : "Live"}</div>
+        <div className={solved ? "status-pill solved" : gaveUp ? "status-pill ended" : "status-pill"}>
+          {solved ? "Solved" : gaveUp ? "Revealed" : "Live"}
+        </div>
       </section>
 
       <form className="guess-form" onSubmit={submitGuess}>
         <input
           aria-label="Guess"
           autoComplete="off"
-          disabled={solved}
+          disabled={locked}
           onChange={(event) => setGuess(event.target.value)}
-          placeholder={solved && answer ? answer.title : "Type a movie title"}
+          placeholder={locked && answer ? answer.title : "Type a movie title"}
           value={guess}
         />
-        <button disabled={solved || guess.trim().length === 0} type="submit">
+        <button disabled={locked || guess.trim().length === 0} type="submit">
           Guess
         </button>
       </form>
@@ -186,11 +211,38 @@ function GameSurface({ data }: { data: GameData }) {
           <Share2 aria-hidden="true" />
           <span>Share</span>
         </button>
-        <button className="icon-button" onClick={() => setHistory([])} title="Reset today's state" type="button">
+        <button
+          className="icon-button"
+          disabled={hintCount >= 5 || solved}
+          onClick={useHint}
+          title="Reveal a nearby movie"
+          type="button"
+        >
+          <Lightbulb aria-hidden="true" />
+          <span>Hint</span>
+        </button>
+        <button className="icon-button danger" disabled={locked} onClick={giveUp} title="Reveal the answer" type="button">
+          <Flag aria-hidden="true" />
+          <span>Give up</span>
+        </button>
+        <button className="icon-button" onClick={resetToday} title="Reset today's state" type="button">
           <RotateCcw aria-hidden="true" />
           <span>Reset</span>
         </button>
       </div>
+
+      {hintMovies.length > 0 ? (
+        <section className="hint-panel" aria-label="Hints">
+          <strong>Closest unguessed neighbors</strong>
+          <div className="hint-list">
+            {hintMovies.map((movie) => (
+              <span className="hint-chip" key={movie.id}>
+                #{data.rankById.get(movie.id)} {movie.title}
+              </span>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="history" aria-label="Guess history">
         {history.length === 0 ? (
@@ -347,6 +399,27 @@ function scoreGuess(rawGuess: string, data: GameData): Omit<GuessRecord, "rawGue
   };
 }
 
+function getHintMovies(data: GameData, history: GuessRecord[], hintCount: number): Movie[] {
+  if (hintCount <= 0) return [];
+
+  const guessedIds = new Set(history.map((record) => record.movieId).filter(Boolean));
+  const hints: Movie[] = [];
+
+  for (const id of data.daily.rankedIds) {
+    const movieId = String(id);
+    if (movieId === String(data.daily.answerId) || guessedIds.has(movieId)) continue;
+
+    const movie = data.moviesById.get(movieId);
+    if (movie) {
+      hints.push(movie);
+    }
+
+    if (hints.length >= hintCount) break;
+  }
+
+  return hints;
+}
+
 function qualityFromRank(rank: number | undefined, itemCount: number, isExact: boolean): GuessQuality {
   if (isExact) return "exact";
   if (!rank) return "cold";
@@ -380,4 +453,40 @@ function useStoredHistory(key: string): [GuessRecord[], (next: GuessRecord[]) =>
   }, [history, key]);
 
   return [history, setHistoryState];
+}
+
+function useStoredNumber(key: string, fallback: number): [number, (next: number) => void] {
+  const [value, setValueState] = useState(() => {
+    const rawValue = localStorage.getItem(key);
+    return rawValue ? Number(rawValue) : fallback;
+  });
+
+  useEffect(() => {
+    const rawValue = localStorage.getItem(key);
+    setValueState(rawValue ? Number(rawValue) : fallback);
+  }, [fallback, key]);
+
+  useEffect(() => {
+    localStorage.setItem(key, String(value));
+  }, [key, value]);
+
+  return [value, setValueState];
+}
+
+function useStoredBoolean(key: string, fallback: boolean): [boolean, (next: boolean) => void] {
+  const [value, setValueState] = useState(() => {
+    const rawValue = localStorage.getItem(key);
+    return rawValue ? rawValue === "true" : fallback;
+  });
+
+  useEffect(() => {
+    const rawValue = localStorage.getItem(key);
+    setValueState(rawValue ? rawValue === "true" : fallback);
+  }, [fallback, key]);
+
+  useEffect(() => {
+    localStorage.setItem(key, String(value));
+  }, [key, value]);
+
+  return [value, setValueState];
 }
