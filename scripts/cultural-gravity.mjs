@@ -1,9 +1,13 @@
 import { createHash } from "node:crypto";
+import { execFile } from "node:child_process";
 import { existsSync } from "node:fs";
-import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rename, rm, stat, writeFile } from "node:fs/promises";
 import { gunzipSync } from "node:zlib";
 import path from "node:path";
 import process from "node:process";
+import { promisify } from "node:util";
+
+const execFileAsync = promisify(execFile);
 
 const root = process.cwd();
 const cacheDir = path.join(root, ".cache/cultural-gravity");
@@ -32,6 +36,16 @@ const minCatalogPopularity = Number(process.env.CG_MIN_CATALOG_POPULARITY ?? 0.1
 const minAnswerReleaseYear = Number(process.env.CG_MIN_ANSWER_RELEASE_YEAR ?? 1990);
 const minAnswerVoteCount = Number(process.env.CG_MIN_ANSWER_VOTE_COUNT ?? 2000);
 const minAnswerPopularity = Number(process.env.CG_MIN_ANSWER_POPULARITY ?? 8);
+const stateReleaseTag = process.env.CG_STATE_RELEASE_TAG ?? "state-cache";
+const stateRepo = process.env.CG_GITHUB_REPOSITORY ?? process.env.GITHUB_REPOSITORY ?? "zacharyfmarion/cultural-gravity";
+const stateAssetName =
+  process.env.CG_STATE_ASSET_NAME ?? `cultural-gravity-cache-v${schemaVersion}-${model}-${dimensions}.tar.gz`;
+const stateArchivePath = path.join(root, ".cache", stateAssetName);
+const stateFiles = [
+  path.basename(catalogPath),
+  path.basename(vectorManifestPath),
+  path.basename(vectorBinaryPath),
+];
 
 const command = process.argv[2] ?? "help";
 
@@ -51,6 +65,15 @@ switch (command) {
   case "validate-public":
     await validatePublicData();
     break;
+  case "restore-state":
+    await restoreState();
+    break;
+  case "save-state":
+    await saveState();
+    break;
+  case "validate-state":
+    await validateState();
+    break;
   case "update":
     await syncCatalog();
     await embedMissing();
@@ -58,7 +81,9 @@ switch (command) {
     await validatePublicData();
     break;
   default:
-    console.log("Usage: node scripts/cultural-gravity.mjs <seed-from-local|sync-catalog|embed-missing|generate-daily|validate-public|update>");
+    console.log(
+      "Usage: node scripts/cultural-gravity.mjs <seed-from-local|sync-catalog|embed-missing|generate-daily|validate-public|restore-state|save-state|validate-state|update>",
+    );
 }
 
 async function seedFromLocal() {
@@ -322,6 +347,142 @@ async function validatePublicData() {
   }
 
   console.log(`Validated public data for ${lookup.movies.length} movies and daily puzzle ${daily.date}.`);
+}
+
+async function restoreState() {
+  await ensureDir(cacheDir);
+  await ensureDir(path.dirname(stateArchivePath));
+  await rm(stateArchivePath, { force: true });
+
+  console.log(`Restoring durable state ${stateAssetName} from release ${stateReleaseTag}.`);
+  try {
+    await runCommand("gh", [
+      "release",
+      "download",
+      stateReleaseTag,
+      "--repo",
+      stateRepo,
+      "--pattern",
+      stateAssetName,
+      "--dir",
+      path.dirname(stateArchivePath),
+      "--clobber",
+    ]);
+  } catch (error) {
+    console.log(`No durable state restored: ${error.message}`);
+    return;
+  }
+
+  if (!existsSync(stateArchivePath)) {
+    console.log(`No release asset named ${stateAssetName} was downloaded.`);
+    return;
+  }
+
+  await runCommand("tar", ["-xzf", stateArchivePath, "-C", cacheDir]);
+  await validateState();
+  console.log(`Restored durable cache to ${path.relative(root, cacheDir)}.`);
+}
+
+async function saveState() {
+  await validateState();
+  await ensureDir(path.dirname(stateArchivePath));
+  await rm(stateArchivePath, { force: true });
+
+  await runCommand("tar", ["-czf", stateArchivePath, "-C", cacheDir, ...stateFiles]);
+  await ensureStateRelease();
+  await runCommand("gh", [
+    "release",
+    "upload",
+    stateReleaseTag,
+    stateArchivePath,
+    "--repo",
+    stateRepo,
+    "--clobber",
+  ]);
+  console.log(`Saved durable state asset ${stateAssetName} to release ${stateReleaseTag}.`);
+}
+
+async function ensureStateRelease() {
+  try {
+    await runCommand("gh", ["release", "view", stateReleaseTag, "--repo", stateRepo]);
+    return;
+  } catch {
+    // The first daily run creates this permanent release, then future runs only replace the asset.
+  }
+
+  await runCommand("gh", [
+    "release",
+    "create",
+    stateReleaseTag,
+    "--repo",
+    stateRepo,
+    "--title",
+    "Cultural Gravity state cache",
+    "--notes",
+    "Durable generated cache for Cultural Gravity. Contains TMDB metadata and embedding vectors; no secrets.",
+  ]);
+}
+
+async function validateState() {
+  const missingFiles = [catalogPath, vectorManifestPath, vectorBinaryPath].filter((filePath) => !existsSync(filePath));
+  if (missingFiles.length > 0) {
+    throw new Error(`Missing cache state files: ${missingFiles.map((filePath) => path.relative(root, filePath)).join(", ")}`);
+  }
+
+  const catalog = await readJson(catalogPath);
+  const manifest = await readJson(vectorManifestPath);
+  const movies = catalog.movies ?? [];
+  const items = manifest.items ?? [];
+  const vectorSize = (await stat(vectorBinaryPath)).size;
+  const expectedVectorSize = items.length * dimensions * Float32Array.BYTES_PER_ELEMENT;
+  const issues = [];
+
+  if (catalog.schemaVersion !== schemaVersion) {
+    issues.push(`Catalog schema version ${catalog.schemaVersion} does not match ${schemaVersion}.`);
+  }
+
+  if (manifest.schemaVersion !== schemaVersion) {
+    issues.push(`Vector schema version ${manifest.schemaVersion} does not match ${schemaVersion}.`);
+  }
+
+  if (manifest.model !== model) {
+    issues.push(`Vector model ${manifest.model} does not match ${model}.`);
+  }
+
+  if (Number(manifest.dimensions) !== dimensions) {
+    issues.push(`Vector dimensions ${manifest.dimensions} does not match ${dimensions}.`);
+  }
+
+  if (Number(manifest.itemCount) !== items.length) {
+    issues.push(`Vector itemCount ${manifest.itemCount} does not match ${items.length} manifest items.`);
+  }
+
+  if (movies.length !== items.length) {
+    issues.push(`Catalog has ${movies.length} movies but vector manifest has ${items.length} items.`);
+  }
+
+  if (vectorSize !== expectedVectorSize) {
+    issues.push(`Vector binary is ${vectorSize} bytes but expected ${expectedVectorSize}.`);
+  }
+
+  for (let index = 0; index < Math.min(movies.length, items.length); index += 1) {
+    if (String(movies[index].id) !== String(items[index].id)) {
+      issues.push(`Catalog/vector order mismatch at index ${index}: ${movies[index].id} !== ${items[index].id}.`);
+      break;
+    }
+
+    if (movies[index].contentHash !== items[index].contentHash) {
+      issues.push(`Catalog/vector content hash mismatch for movie ${movies[index].id}.`);
+      break;
+    }
+  }
+
+  if (issues.length > 0) {
+    for (const issue of issues) console.error(issue);
+    process.exit(1);
+  }
+
+  console.log(`Validated cache state for ${movies.length} movies using ${manifest.model} (${manifest.dimensions} dimensions).`);
 }
 
 async function fetchTmdbMovieExportCandidates() {
@@ -634,6 +795,20 @@ async function writeFileAtomic(filePath, value) {
   const tempPath = `${filePath}.${process.pid}.tmp`;
   await writeFile(tempPath, value);
   await rename(tempPath, filePath);
+}
+
+async function runCommand(binary, args) {
+  try {
+    const { stdout, stderr } = await execFileAsync(binary, args, {
+      cwd: root,
+      maxBuffer: 1024 * 1024 * 16,
+    });
+    if (stdout.trim()) console.log(stdout.trim());
+    if (stderr.trim()) console.error(stderr.trim());
+  } catch (error) {
+    const details = [error.stderr, error.stdout].filter(Boolean).join("\n").trim();
+    throw new Error(details || `${binary} ${args.join(" ")} failed`);
+  }
 }
 
 async function ensureDir(directory) {

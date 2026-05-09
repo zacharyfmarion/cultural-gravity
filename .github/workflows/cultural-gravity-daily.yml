@@ -35,6 +35,7 @@ jobs:
       CG_MIN_ANSWER_POPULARITY: "8"
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+      GH_TOKEN: ${{ github.token }}
       VITE_BASE_PATH: /${{ github.event.repository.name }}/
     steps:
       - name: Check out repository
@@ -59,6 +60,17 @@ jobs:
           restore-keys: |
             cultural-gravity-v1-${{ env.CG_EMBEDDING_MODEL }}-${{ env.CG_EMBEDDING_DIMENSIONS }}-
 
+      - name: Restore durable state from release
+        run: |
+          if [ -f .cache/cultural-gravity/movie-catalog.json ] && \
+             [ -f .cache/cultural-gravity/movie-vector-manifest.json ] && \
+             [ -f .cache/cultural-gravity/movie-vectors.f32 ] && \
+             node scripts/cultural-gravity.mjs validate-state; then
+            echo "Actions cache restored valid vector state."
+          else
+            node scripts/cultural-gravity.mjs restore-state
+          fi
+
       - name: Generate daily data
         run: node scripts/cultural-gravity.mjs update
 
@@ -66,8 +78,12 @@ jobs:
         run: |
           corepack pnpm -r typecheck
           corepack pnpm --filter @daily-game-lab/prototype-registry validate:puzzles
+          node scripts/cultural-gravity.mjs validate-state
           node scripts/cultural-gravity.mjs validate-public
           corepack pnpm -r build
+
+      - name: Save durable state to release
+        run: node scripts/cultural-gravity.mjs save-state
 
       - name: Commit generated static data
         run: |

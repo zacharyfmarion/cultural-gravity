@@ -33,6 +33,13 @@ Add these repository secrets in GitHub:
 
 Enable GitHub Pages with source set to **GitHub Actions**. The scheduled workflow restores the movie/vector cache, syncs TMDB, embeds only missing or changed movies with `text-embedding-3-large`, generates a rolling 7-day set of daily rank files, commits the static data, and deploys the Vite build.
 
+Cache durability has two layers:
+
+- GitHub Actions cache is the fast path for normal daily runs.
+- A GitHub release named `state-cache` stores `cultural-gravity-cache-v1-text-embedding-3-large-1024.tar.gz` as the durable source of truth. The workflow restores from this release if the Actions cache is missing, then replaces the asset after a successful validation.
+
+The release cache contains TMDB movie metadata and embedding vectors only. It does not contain API keys or user data.
+
 Default catalog and answer filters are deliberately different:
 
 - Guess catalog: release year `1900+`, at least `10` TMDB votes, and popularity `>= 0.1`.
@@ -44,5 +51,6 @@ Local fallback:
 
 - `pnpm seed:local` regenerates a tiny 63-movie dataset from the current seed corpus.
 - `pnpm update:daily` requires both API keys and builds the scaled dataset.
+- `node scripts/cultural-gravity.mjs restore-state|validate-state|save-state` manages the durable release-backed cache.
 
 The workflow enriches up to `2,000` new TMDB movies per run by default. Raise `CG_TMDB_DETAIL_LIMIT` after the first successful deploy if you want the catalog to fill faster.
