@@ -60,14 +60,14 @@ jobs:
             cultural-gravity-v1-${{ env.CG_EMBEDDING_MODEL }}-${{ env.CG_EMBEDDING_DIMENSIONS }}-
 
       - name: Generate daily data
-        run: corepack pnpm exec pnpm update:daily
+        run: node scripts/cultural-gravity.mjs update
 
       - name: Verify
         run: |
-          corepack pnpm exec pnpm typecheck
-          corepack pnpm exec pnpm validate:puzzles
-          corepack pnpm exec pnpm validate:generated
-          corepack pnpm exec pnpm build
+          corepack pnpm -r typecheck
+          corepack pnpm --filter @daily-game-lab/prototype-registry validate:puzzles
+          node scripts/cultural-gravity.mjs validate-public
+          corepack pnpm -r build
 
       - name: Commit generated static data
         run: |
