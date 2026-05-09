@@ -44,3 +44,5 @@ Local fallback:
 
 - `pnpm seed:local` regenerates a tiny 63-movie dataset from the current seed corpus.
 - `pnpm update:daily` requires both API keys and builds the scaled dataset.
+
+The workflow enriches up to `2,000` new TMDB movies per run by default. Raise `CG_TMDB_DETAIL_LIMIT` after the first successful deploy if you want the catalog to fill faster.
