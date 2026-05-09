@@ -1,0 +1,443 @@
+[
+  {
+    "id": "the-matrix",
+    "title": "The Matrix",
+    "aliases": ["Matrix"],
+    "year": 1999,
+    "embeddingText": "Title: The Matrix. Type: movie. Year: 1999. Genres: science fiction, action, cyberpunk. Themes: simulated reality, rebellion, hacker culture, prophecy, identity, technology as prison. Cast and creators: Keanu Reeves, Carrie-Anne Moss, Laurence Fishburne, Hugo Weaving, the Wachowskis. Cultural signals: red pill, bullet time, black leather, green code, late-1990s internet paranoia, anime and Hong Kong action influence."
+  },
+  {
+    "id": "blade-runner",
+    "title": "Blade Runner",
+    "aliases": [],
+    "year": 1982,
+    "embeddingText": "Title: Blade Runner. Type: movie. Year: 1982. Genres: science fiction, neo-noir, cyberpunk. Themes: artificial humans, memory, identity, corporate dystopia, rain-soaked cities, what makes a person real. Cast and creators: Harrison Ford, Rutger Hauer, Sean Young, Ridley Scott. Cultural signals: replicants, Voight-Kampff test, neon noir, Los Angeles future, philosophical sci-fi."
+  },
+  {
+    "id": "blade-runner-2049",
+    "title": "Blade Runner 2049",
+    "aliases": ["Blade Runner 2"],
+    "year": 2017,
+    "embeddingText": "Title: Blade Runner 2049. Type: movie. Year: 2017. Genres: science fiction, neo-noir, cyberpunk. Themes: artificial life, memory, loneliness, identity, corporate control, inherited myth. Cast and creators: Ryan Gosling, Harrison Ford, Ana de Armas, Denis Villeneuve. Cultural signals: beautiful brutalist futures, holographic companionship, replicant detective, slow philosophical sci-fi."
+  },
+  {
+    "id": "ghost-in-the-shell",
+    "title": "Ghost in the Shell",
+    "aliases": ["Ghost in the Shell 1995"],
+    "year": 1995,
+    "embeddingText": "Title: Ghost in the Shell. Type: animated movie. Year: 1995. Genres: anime, science fiction, cyberpunk. Themes: consciousness, cyborg bodies, networked identity, surveillance, artificial intelligence, philosophy of the self. Cultural signals: Major Motoko Kusanagi, cybernetic police, urban futures, body and ghost, major influence on The Matrix."
+  },
+  {
+    "id": "inception",
+    "title": "Inception",
+    "aliases": [],
+    "year": 2010,
+    "embeddingText": "Title: Inception. Type: movie. Year: 2010. Genres: science fiction, thriller, heist. Themes: dreams inside dreams, reality uncertainty, memory, grief, teams executing impossible architecture. Cast and creators: Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page, Tom Hardy, Christopher Nolan. Cultural signals: spinning top, folding city, dream layers, cerebral blockbuster."
+  },
+  {
+    "id": "terminator-2",
+    "title": "Terminator 2: Judgment Day",
+    "aliases": ["T2", "Terminator 2"],
+    "year": 1991,
+    "embeddingText": "Title: Terminator 2: Judgment Day. Type: movie. Year: 1991. Genres: science fiction, action. Themes: artificial intelligence apocalypse, time travel, killer machines, fate, chosen child, humanized robot protector. Cast and creators: Arnold Schwarzenegger, Linda Hamilton, Edward Furlong, James Cameron. Cultural signals: Skynet, liquid metal T-1000, motorcycle chase, blockbuster sci-fi action."
+  },
+  {
+    "id": "ex-machina",
+    "title": "Ex Machina",
+    "aliases": [],
+    "year": 2014,
+    "embeddingText": "Title: Ex Machina. Type: movie. Year: 2014. Genres: science fiction, psychological thriller. Themes: artificial intelligence, manipulation, consciousness, tech billionaire power, gendered creation myths, testing personhood. Cast and creators: Alicia Vikander, Domhnall Gleeson, Oscar Isaac, Alex Garland. Cultural signals: Turing test as seduction, glass rooms, dance scene, sleek isolated lab."
+  },
+  {
+    "id": "her",
+    "title": "Her",
+    "aliases": [],
+    "year": 2013,
+    "embeddingText": "Title: Her. Type: movie. Year: 2013. Genres: romantic science fiction, drama. Themes: artificial intelligence, loneliness, intimacy, operating systems, grief, emotional technology, soft future urban life. Cast and creators: Joaquin Phoenix, Scarlett Johansson, Amy Adams, Spike Jonze. Cultural signals: falling in love with an AI voice, pastel near-future, melancholy tech romance."
+  },
+  {
+    "id": "minority-report",
+    "title": "Minority Report",
+    "aliases": [],
+    "year": 2002,
+    "embeddingText": "Title: Minority Report. Type: movie. Year: 2002. Genres: science fiction, action thriller. Themes: surveillance, predictive policing, free will, advertising, guilt before action, future interfaces. Cast and creators: Tom Cruise, Samantha Morton, Steven Spielberg, Philip K. Dick source. Cultural signals: precogs, gesture screens, eye scans, police state future."
+  },
+  {
+    "id": "the-social-network",
+    "title": "The Social Network",
+    "aliases": [],
+    "year": 2010,
+    "embeddingText": "Title: The Social Network. Type: movie. Year: 2010. Genres: biographical drama, technology drama. Themes: ambition, friendship betrayal, startup mythology, social media, status, coding, lawsuits. Cast and creators: Jesse Eisenberg, Andrew Garfield, Justin Timberlake, David Fincher, Aaron Sorkin. Cultural signals: Facebook origin story, Harvard, tech founders, cold digital loneliness."
+  },
+  {
+    "id": "hackers",
+    "title": "Hackers",
+    "aliases": [],
+    "year": 1995,
+    "embeddingText": "Title: Hackers. Type: movie. Year: 1995. Genres: cyber thriller, teen cult movie. Themes: hacking, youth rebellion, corporate systems, digital identity, style over realism. Cast and creators: Angelina Jolie, Jonny Lee Miller. Cultural signals: 1990s internet fashion, rollerblades, techno soundtrack, hacker handles, colorful computer underground."
+  },
+  {
+    "id": "john-wick",
+    "title": "John Wick",
+    "aliases": [],
+    "year": 2014,
+    "embeddingText": "Title: John Wick. Type: movie. Year: 2014. Genres: action, neo-noir, assassin thriller. Themes: grief, revenge, secret criminal rules, professional violence, underworld mythology. Cast and creators: Keanu Reeves, Chad Stahelski. Cultural signals: gun-fu, Continental hotel, Baba Yaga, stylish practical action, dog revenge plot."
+  },
+  {
+    "id": "speed",
+    "title": "Speed",
+    "aliases": [],
+    "year": 1994,
+    "embeddingText": "Title: Speed. Type: movie. Year: 1994. Genres: action thriller. Themes: public transit under threat, bomb plot, improvisation, heroic cop, ticking clock. Cast and creators: Keanu Reeves, Sandra Bullock, Dennis Hopper, Jan de Bont. Cultural signals: bus cannot slow down, 1990s action, Los Angeles freeway tension."
+  },
+  {
+    "id": "die-hard",
+    "title": "Die Hard",
+    "aliases": [],
+    "year": 1988,
+    "embeddingText": "Title: Die Hard. Type: movie. Year: 1988. Genres: action thriller. Themes: lone hero, hostage crisis, skyscraper siege, ordinary cop against organized criminals, Christmas action. Cast and creators: Bruce Willis, Alan Rickman, John McTiernan. Cultural signals: Nakatomi Plaza, yippee-ki-yay, barefoot action hero."
+  },
+  {
+    "id": "mad-max-fury-road",
+    "title": "Mad Max: Fury Road",
+    "aliases": ["Fury Road"],
+    "year": 2015,
+    "embeddingText": "Title: Mad Max: Fury Road. Type: movie. Year: 2015. Genres: post-apocalyptic action, chase movie. Themes: survival, escape, ecological collapse, warlords, liberation, practical spectacle. Cast and creators: Charlize Theron, Tom Hardy, George Miller. Cultural signals: War Boys, chrome, desert convoy, Furiosa, nearly continuous vehicle chase."
+  },
+  {
+    "id": "the-dark-knight",
+    "title": "The Dark Knight",
+    "aliases": [],
+    "year": 2008,
+    "embeddingText": "Title: The Dark Knight. Type: movie. Year: 2008. Genres: superhero, crime thriller. Themes: chaos, moral compromise, vigilantism, surveillance, urban crime, escalation. Cast and creators: Christian Bale, Heath Ledger, Aaron Eckhart, Christopher Nolan. Cultural signals: Joker, Batman, Gotham, pencil trick, prestige superhero cinema."
+  },
+  {
+    "id": "joker",
+    "title": "Joker",
+    "aliases": [],
+    "year": 2019,
+    "embeddingText": "Title: Joker. Type: movie. Year: 2019. Genres: psychological drama, comic book crime drama. Themes: alienation, social decay, mental illness, performance, violence, class resentment. Cast and creators: Joaquin Phoenix, Todd Phillips. Cultural signals: Gotham without Batman, clown makeup, stairs dance, bleak character study."
+  },
+  {
+    "id": "fight-club",
+    "title": "Fight Club",
+    "aliases": [],
+    "year": 1999,
+    "embeddingText": "Title: Fight Club. Type: movie. Year: 1999. Genres: psychological drama, satire. Themes: masculinity crisis, consumerism, split identity, underground rebellion, self-destruction. Cast and creators: Edward Norton, Brad Pitt, Helena Bonham Carter, David Fincher, Chuck Palahniuk source. Cultural signals: Tyler Durden, first rule, soap, unreliable narrator."
+  },
+  {
+    "id": "pulp-fiction",
+    "title": "Pulp Fiction",
+    "aliases": [],
+    "year": 1994,
+    "embeddingText": "Title: Pulp Fiction. Type: movie. Year: 1994. Genres: crime, dark comedy, postmodern drama. Themes: criminals talking, nonlinear stories, pop culture chatter, violence, redemption, cool style. Cast and creators: John Travolta, Uma Thurman, Samuel L. Jackson, Bruce Willis, Quentin Tarantino. Cultural signals: diner robbery, dance contest, Royale with cheese."
+  },
+  {
+    "id": "goodfellas",
+    "title": "Goodfellas",
+    "aliases": [],
+    "year": 1990,
+    "embeddingText": "Title: Goodfellas. Type: movie. Year: 1990. Genres: gangster film, crime drama. Themes: organized crime, loyalty, greed, violence, rise and fall, American aspiration curdling. Cast and creators: Ray Liotta, Robert De Niro, Joe Pesci, Martin Scorsese. Cultural signals: wiseguys, Copacabana tracking shot, funny how scene."
+  },
+  {
+    "id": "the-godfather",
+    "title": "The Godfather",
+    "aliases": [],
+    "year": 1972,
+    "embeddingText": "Title: The Godfather. Type: movie. Year: 1972. Genres: gangster film, family crime drama. Themes: power, family, loyalty, corruption, succession, immigrant America. Cast and creators: Marlon Brando, Al Pacino, James Caan, Francis Ford Coppola. Cultural signals: Corleone family, offer he cannot refuse, mafia prestige epic."
+  },
+  {
+    "id": "heat",
+    "title": "Heat",
+    "aliases": [],
+    "year": 1995,
+    "embeddingText": "Title: Heat. Type: movie. Year: 1995. Genres: crime thriller, heist drama. Themes: professional criminals, obsessive cops, work as identity, Los Angeles loneliness, bank robbery. Cast and creators: Al Pacino, Robert De Niro, Val Kilmer, Michael Mann. Cultural signals: diner conversation, downtown shootout, cool blue crime atmosphere."
+  },
+  {
+    "id": "oceans-eleven",
+    "title": "Ocean's Eleven",
+    "aliases": ["Oceans Eleven"],
+    "year": 2001,
+    "embeddingText": "Title: Ocean's Eleven. Type: movie. Year: 2001. Genres: heist comedy, crime caper. Themes: teamwork, charm, casino robbery, deception, stylish criminals, romance. Cast and creators: George Clooney, Brad Pitt, Matt Damon, Julia Roberts, Steven Soderbergh. Cultural signals: Las Vegas, ensemble heist, cool suits, playful con."
+  },
+  {
+    "id": "the-big-lebowski",
+    "title": "The Big Lebowski",
+    "aliases": [],
+    "year": 1998,
+    "embeddingText": "Title: The Big Lebowski. Type: movie. Year: 1998. Genres: comedy, neo-noir, cult film. Themes: mistaken identity, slacker philosophy, bowling, absurd crime plot, Los Angeles weirdness. Cast and creators: Jeff Bridges, John Goodman, Julianne Moore, Coen brothers. Cultural signals: The Dude, White Russian, rug, nihilists."
+  },
+  {
+    "id": "groundhog-day",
+    "title": "Groundhog Day",
+    "aliases": [],
+    "year": 1993,
+    "embeddingText": "Title: Groundhog Day. Type: movie. Year: 1993. Genres: comedy, fantasy, romantic comedy. Themes: time loop, self-improvement, repetition, small-town ritual, selfishness transformed into care. Cast and creators: Bill Murray, Andie MacDowell, Harold Ramis. Cultural signals: reliving the same day, Punxsutawney, existential comedy."
+  },
+  {
+    "id": "back-to-the-future",
+    "title": "Back to the Future",
+    "aliases": [],
+    "year": 1985,
+    "embeddingText": "Title: Back to the Future. Type: movie. Year: 1985. Genres: science fiction comedy, adventure. Themes: time travel, parents as teenagers, destiny, invention, 1950s nostalgia, teenage wish fulfillment. Cast and creators: Michael J. Fox, Christopher Lloyd, Robert Zemeckis. Cultural signals: DeLorean, flux capacitor, Marty McFly, Doc Brown."
+  },
+  {
+    "id": "jurassic-park",
+    "title": "Jurassic Park",
+    "aliases": [],
+    "year": 1993,
+    "embeddingText": "Title: Jurassic Park. Type: movie. Year: 1993. Genres: science fiction adventure, creature thriller. Themes: dinosaurs revived by genetic engineering, theme park hubris, chaos theory, awe and terror. Cast and creators: Sam Neill, Laura Dern, Jeff Goldblum, Steven Spielberg. Cultural signals: T. rex, velociraptors, amber DNA, life finds a way."
+  },
+  {
+    "id": "et",
+    "title": "E.T. the Extra-Terrestrial",
+    "aliases": ["ET"],
+    "year": 1982,
+    "embeddingText": "Title: E.T. the Extra-Terrestrial. Type: movie. Year: 1982. Genres: family science fiction, adventure. Themes: childhood, alien friendship, suburbia, empathy, homesickness, wonder. Cast and creators: Henry Thomas, Drew Barrymore, Steven Spielberg. Cultural signals: phone home, flying bicycle, glowing finger, gentle alien visitor."
+  },
+  {
+    "id": "star-wars",
+    "title": "Star Wars",
+    "aliases": ["A New Hope", "Star Wars: A New Hope"],
+    "year": 1977,
+    "embeddingText": "Title: Star Wars. Type: movie. Year: 1977. Genres: space opera, adventure, fantasy science fiction. Themes: rebellion, destiny, mentorship, mythic hero journey, empire versus freedom. Cast and creators: Mark Hamill, Harrison Ford, Carrie Fisher, George Lucas. Cultural signals: Luke Skywalker, Darth Vader, lightsabers, Death Star, the Force."
+  },
+  {
+    "id": "the-empire-strikes-back",
+    "title": "The Empire Strikes Back",
+    "aliases": ["Empire Strikes Back"],
+    "year": 1980,
+    "embeddingText": "Title: The Empire Strikes Back. Type: movie. Year: 1980. Genres: space opera, adventure, fantasy science fiction. Themes: failure, training, dark lineage, rebellion under pressure, mythic temptation. Cast and creators: Mark Hamill, Harrison Ford, Carrie Fisher, Irvin Kershner, George Lucas. Cultural signals: Yoda, Hoth, Darth Vader reveal, I am your father."
+  },
+  {
+    "id": "alien",
+    "title": "Alien",
+    "aliases": [],
+    "year": 1979,
+    "embeddingText": "Title: Alien. Type: movie. Year: 1979. Genres: science fiction horror. Themes: survival, corporate exploitation, body horror, haunted spaceship, unknowable organism. Cast and creators: Sigourney Weaver, Tom Skerritt, Ridley Scott, H. R. Giger design. Cultural signals: xenomorph, chestburster, Nostromo, Ripley, in space no one can hear you scream."
+  },
+  {
+    "id": "aliens",
+    "title": "Aliens",
+    "aliases": [],
+    "year": 1986,
+    "embeddingText": "Title: Aliens. Type: movie. Year: 1986. Genres: science fiction action, horror. Themes: militarized survival, motherhood, corporate greed, trauma, hostile colony rescue. Cast and creators: Sigourney Weaver, Michael Biehn, James Cameron. Cultural signals: colonial marines, xenomorph queen, game over man, Ripley in power loader."
+  },
+  {
+    "id": "avatar",
+    "title": "Avatar",
+    "aliases": [],
+    "year": 2009,
+    "embeddingText": "Title: Avatar. Type: movie. Year: 2009. Genres: science fiction adventure, ecological fantasy. Themes: colonization, environmental connection, alien world, body transfer, indigenous resistance. Cast and creators: Sam Worthington, Zoe Saldana, James Cameron. Cultural signals: Pandora, Na'vi, blue aliens, 3D spectacle, floating mountains."
+  },
+  {
+    "id": "interstellar",
+    "title": "Interstellar",
+    "aliases": [],
+    "year": 2014,
+    "embeddingText": "Title: Interstellar. Type: movie. Year: 2014. Genres: science fiction, space drama. Themes: space exploration, relativity, parent-child love, climate collapse, black holes, survival of humanity. Cast and creators: Matthew McConaughey, Anne Hathaway, Jessica Chastain, Christopher Nolan. Cultural signals: wormhole, cornfields, TARS, time dilation, emotional cosmic scale."
+  },
+  {
+    "id": "arrival",
+    "title": "Arrival",
+    "aliases": [],
+    "year": 2016,
+    "embeddingText": "Title: Arrival. Type: movie. Year: 2016. Genres: science fiction drama. Themes: language, alien contact, time perception, grief, diplomacy, communication shaping thought. Cast and creators: Amy Adams, Jeremy Renner, Denis Villeneuve, Ted Chiang source. Cultural signals: heptapods, circular writing, non-linear memory, quiet cerebral first contact."
+  },
+  {
+    "id": "dune",
+    "title": "Dune",
+    "aliases": ["Dune Part One"],
+    "year": 2021,
+    "embeddingText": "Title: Dune. Type: movie. Year: 2021. Genres: epic science fiction, political fantasy. Themes: prophecy, desert planet, empire, resource extraction, messiah myth, noble houses. Cast and creators: Timothee Chalamet, Rebecca Ferguson, Oscar Isaac, Denis Villeneuve, Frank Herbert source. Cultural signals: Arrakis, spice, sandworms, Bene Gesserit, House Atreides."
+  },
+  {
+    "id": "lord-of-the-rings-fellowship",
+    "title": "The Lord of the Rings: The Fellowship of the Ring",
+    "aliases": ["Fellowship of the Ring"],
+    "year": 2001,
+    "embeddingText": "Title: The Lord of the Rings: The Fellowship of the Ring. Type: movie. Year: 2001. Genres: epic fantasy, adventure. Themes: fellowship, corrupting power, quest, friendship, mythic evil, small hero bearing burden. Cast and creators: Elijah Wood, Ian McKellen, Viggo Mortensen, Peter Jackson, J. R. R. Tolkien source. Cultural signals: One Ring, Middle-earth, hobbits, Gandalf."
+  },
+  {
+    "id": "harry-potter-sorcerers-stone",
+    "title": "Harry Potter and the Sorcerer's Stone",
+    "aliases": ["Harry Potter and the Philosopher's Stone", "Harry Potter 1"],
+    "year": 2001,
+    "embeddingText": "Title: Harry Potter and the Sorcerer's Stone. Type: movie. Year: 2001. Genres: fantasy, coming-of-age, school adventure. Themes: magic school, chosen child, friendship, hidden world, orphan identity. Cast and creators: Daniel Radcliffe, Emma Watson, Rupert Grint, Chris Columbus, J. K. Rowling source. Cultural signals: Hogwarts, wands, sorting hat, Quidditch."
+  },
+  {
+    "id": "spirited-away",
+    "title": "Spirited Away",
+    "aliases": [],
+    "year": 2001,
+    "embeddingText": "Title: Spirited Away. Type: animated movie. Year: 2001. Genres: fantasy, coming-of-age, anime. Themes: spirit world, identity, greed, labor, courage, transformation, environmental unease. Cast and creators: Hayao Miyazaki, Studio Ghibli. Cultural signals: bathhouse, No-Face, Chihiro, Haku, dreamlike Japanese folklore."
+  },
+  {
+    "id": "toy-story",
+    "title": "Toy Story",
+    "aliases": [],
+    "year": 1995,
+    "embeddingText": "Title: Toy Story. Type: animated movie. Year: 1995. Genres: family comedy, buddy adventure. Themes: toys with secret lives, jealousy, friendship, obsolescence, childhood imagination. Cast and creators: Tom Hanks, Tim Allen, Pixar, John Lasseter. Cultural signals: Woody, Buzz Lightyear, to infinity and beyond, first computer animated feature."
+  },
+  {
+    "id": "finding-nemo",
+    "title": "Finding Nemo",
+    "aliases": [],
+    "year": 2003,
+    "embeddingText": "Title: Finding Nemo. Type: animated movie. Year: 2003. Genres: family adventure, comedy. Themes: parent-child anxiety, ocean journey, disability, trust, letting go. Cast and creators: Albert Brooks, Ellen DeGeneres, Pixar, Andrew Stanton. Cultural signals: clownfish, Dory, just keep swimming, Great Barrier Reef."
+  },
+  {
+    "id": "the-lion-king",
+    "title": "The Lion King",
+    "aliases": [],
+    "year": 1994,
+    "embeddingText": "Title: The Lion King. Type: animated movie. Year: 1994. Genres: musical, family adventure, animal fable. Themes: royal inheritance, grief, exile, responsibility, circle of life. Cultural signals: Simba, Mufasa, Scar, Hakuna Matata, Pride Rock, Disney Renaissance."
+  },
+  {
+    "id": "titanic",
+    "title": "Titanic",
+    "aliases": [],
+    "year": 1997,
+    "embeddingText": "Title: Titanic. Type: movie. Year: 1997. Genres: historical romance, disaster epic. Themes: doomed love, class divide, memory, tragedy, spectacle, shipwreck. Cast and creators: Leonardo DiCaprio, Kate Winslet, James Cameron. Cultural signals: Jack and Rose, iceberg, Heart of the Ocean, My Heart Will Go On."
+  },
+  {
+    "id": "la-la-land",
+    "title": "La La Land",
+    "aliases": [],
+    "year": 2016,
+    "embeddingText": "Title: La La Land. Type: movie. Year: 2016. Genres: musical, romance, drama. Themes: ambition, art, jazz, Hollywood dreams, love versus career, bittersweet alternate life. Cast and creators: Emma Stone, Ryan Gosling, Damien Chazelle. Cultural signals: Los Angeles musical, planetarium dance, city of stars."
+  },
+  {
+    "id": "the-notebook",
+    "title": "The Notebook",
+    "aliases": [],
+    "year": 2004,
+    "embeddingText": "Title: The Notebook. Type: movie. Year: 2004. Genres: romantic drama. Themes: enduring love, memory, class difference, summer romance, aging, devotion. Cast and creators: Ryan Gosling, Rachel McAdams, Nick Cassavetes, Nicholas Sparks source. Cultural signals: rain kiss, handwritten love story, tearjerker romance."
+  },
+  {
+    "id": "mean-girls",
+    "title": "Mean Girls",
+    "aliases": [],
+    "year": 2004,
+    "embeddingText": "Title: Mean Girls. Type: movie. Year: 2004. Genres: teen comedy, satire. Themes: high school hierarchy, popularity, gossip, social performance, girlhood cruelty. Cast and creators: Lindsay Lohan, Rachel McAdams, Tina Fey. Cultural signals: Plastics, Burn Book, fetch, on Wednesdays we wear pink."
+  },
+  {
+    "id": "clueless",
+    "title": "Clueless",
+    "aliases": [],
+    "year": 1995,
+    "embeddingText": "Title: Clueless. Type: movie. Year: 1995. Genres: teen comedy, romantic comedy. Themes: matchmaking, popularity, Beverly Hills style, self-discovery, Jane Austen adaptation. Cast and creators: Alicia Silverstone, Amy Heckerling. Cultural signals: Cher Horowitz, plaid fashion, as if, 1990s teen culture."
+  },
+  {
+    "id": "get-out",
+    "title": "Get Out",
+    "aliases": [],
+    "year": 2017,
+    "embeddingText": "Title: Get Out. Type: movie. Year: 2017. Genres: horror, social thriller, satire. Themes: racism, liberal politeness, body theft, hypnosis, family menace, survival. Cast and creators: Daniel Kaluuya, Allison Williams, Jordan Peele. Cultural signals: the Sunken Place, teacup hypnosis, social horror breakthrough."
+  },
+  {
+    "id": "parasite",
+    "title": "Parasite",
+    "aliases": [],
+    "year": 2019,
+    "embeddingText": "Title: Parasite. Type: movie. Year: 2019. Genres: dark comedy, thriller, social satire. Themes: class inequality, deception, architecture, family survival, hidden spaces, resentment. Cast and creators: Song Kang-ho, Bong Joon-ho. Cultural signals: semi-basement, rich house, scholar's rock, Oscar-winning Korean cinema."
+  },
+  {
+    "id": "everything-everywhere-all-at-once",
+    "title": "Everything Everywhere All at Once",
+    "aliases": ["Everything Everywhere"],
+    "year": 2022,
+    "embeddingText": "Title: Everything Everywhere All at Once. Type: movie. Year: 2022. Genres: multiverse action comedy, family drama, science fiction. Themes: immigrant family, nihilism, possibility, mother-daughter reconciliation, absurdity, kindness. Cast and creators: Michelle Yeoh, Ke Huy Quan, Stephanie Hsu, Daniels. Cultural signals: bagel, googly eyes, tax office multiverse, maximalist indie blockbuster."
+  },
+  {
+    "id": "black-panther",
+    "title": "Black Panther",
+    "aliases": [],
+    "year": 2018,
+    "embeddingText": "Title: Black Panther. Type: movie. Year: 2018. Genres: superhero, Afrofuturist action adventure. Themes: monarchy, diaspora, isolationism, colonial history, technology, legacy. Cast and creators: Chadwick Boseman, Michael B. Jordan, Lupita Nyong'o, Ryan Coogler. Cultural signals: Wakanda, vibranium, Killmonger, Marvel cultural phenomenon."
+  },
+  {
+    "id": "barbie",
+    "title": "Barbie",
+    "aliases": [],
+    "year": 2023,
+    "embeddingText": "Title: Barbie. Type: movie. Year: 2023. Genres: fantasy comedy, satire. Themes: dolls, gender roles, patriarchy, consumer culture, selfhood, existential crisis. Cast and creators: Margot Robbie, Ryan Gosling, Greta Gerwig. Cultural signals: Barbie Land, pink production design, Ken, toy brand meta-comedy."
+  },
+  {
+    "id": "oppenheimer",
+    "title": "Oppenheimer",
+    "aliases": [],
+    "year": 2023,
+    "embeddingText": "Title: Oppenheimer. Type: movie. Year: 2023. Genres: historical biographical drama. Themes: atomic bomb, scientific responsibility, guilt, ambition, government hearings, moral catastrophe. Cast and creators: Cillian Murphy, Emily Blunt, Robert Downey Jr., Christopher Nolan. Cultural signals: Manhattan Project, Trinity test, IMAX historical epic, Barbenheimer."
+  },
+  {
+    "id": "top-gun-maverick",
+    "title": "Top Gun: Maverick",
+    "aliases": ["Top Gun Maverick"],
+    "year": 2022,
+    "embeddingText": "Title: Top Gun: Maverick. Type: movie. Year: 2022. Genres: action drama, aviation blockbuster. Themes: mentorship, legacy, grief, elite pilots, impossible mission, practical aerial spectacle. Cast and creators: Tom Cruise, Miles Teller, Joseph Kosinski. Cultural signals: fighter jets, Maverick, nostalgia sequel, danger zone energy."
+  },
+  {
+    "id": "the-shining",
+    "title": "The Shining",
+    "aliases": [],
+    "year": 1980,
+    "embeddingText": "Title: The Shining. Type: movie. Year: 1980. Genres: psychological horror. Themes: isolation, haunted hotel, family violence, madness, writer's block, supernatural dread. Cast and creators: Jack Nicholson, Shelley Duvall, Stanley Kubrick, Stephen King source. Cultural signals: Overlook Hotel, here's Johnny, twins, redrum, hedge maze."
+  },
+  {
+    "id": "scream",
+    "title": "Scream",
+    "aliases": [],
+    "year": 1996,
+    "embeddingText": "Title: Scream. Type: movie. Year: 1996. Genres: slasher horror, meta comedy. Themes: horror movie rules, masked killer, teen survival, self-aware genre play. Cast and creators: Neve Campbell, Courteney Cox, Wes Craven, Kevin Williamson. Cultural signals: Ghostface, phone call opening, Woodsboro, meta-slasher revival."
+  },
+  {
+    "id": "jaws",
+    "title": "Jaws",
+    "aliases": [],
+    "year": 1975,
+    "embeddingText": "Title: Jaws. Type: movie. Year: 1975. Genres: thriller, creature feature, adventure horror. Themes: shark attack, beach town panic, public safety versus commerce, man versus nature. Cast and creators: Roy Scheider, Richard Dreyfuss, Robert Shaw, Steven Spielberg. Cultural signals: great white shark, Amity Island, ominous two-note music, summer blockbuster origin."
+  },
+  {
+    "id": "silence-of-the-lambs",
+    "title": "The Silence of the Lambs",
+    "aliases": ["Silence of the Lambs"],
+    "year": 1991,
+    "embeddingText": "Title: The Silence of the Lambs. Type: movie. Year: 1991. Genres: psychological thriller, crime horror. Themes: serial killer investigation, manipulation, trauma, mentorship, profiling. Cast and creators: Jodie Foster, Anthony Hopkins, Jonathan Demme, Thomas Harris source. Cultural signals: Clarice Starling, Hannibal Lecter, quid pro quo, FBI procedural dread."
+  },
+  {
+    "id": "se7en",
+    "title": "Se7en",
+    "aliases": ["Seven"],
+    "year": 1995,
+    "embeddingText": "Title: Se7en. Type: movie. Year: 1995. Genres: crime thriller, neo-noir horror. Themes: serial killer, sin, moral rot, detective partnership, bleak city, obsession. Cast and creators: Brad Pitt, Morgan Freeman, Kevin Spacey, David Fincher. Cultural signals: seven deadly sins, what's in the box, rain-soaked nihilism."
+  },
+  {
+    "id": "grand-budapest-hotel",
+    "title": "The Grand Budapest Hotel",
+    "aliases": ["Grand Budapest Hotel"],
+    "year": 2014,
+    "embeddingText": "Title: The Grand Budapest Hotel. Type: movie. Year: 2014. Genres: comedy, caper, period adventure. Themes: nostalgia, hospitality, friendship, fascism approaching, storytelling layers, elegance under threat. Cast and creators: Ralph Fiennes, Tony Revolori, Saoirse Ronan, Wes Anderson. Cultural signals: pastel symmetry, hotel concierge, Mendl's pastries, storybook Europe."
+  },
+  {
+    "id": "amelie",
+    "title": "Amelie",
+    "aliases": ["Amélie"],
+    "year": 2001,
+    "embeddingText": "Title: Amelie. Type: movie. Year: 2001. Genres: romantic comedy, whimsical drama. Themes: small acts of kindness, loneliness, imagination, Paris, shyness, chance encounters. Cast and creators: Audrey Tautou, Jean-Pierre Jeunet. Cultural signals: Montmartre, saturated colors, quirky romance, secret do-gooding."
+  },
+  {
+    "id": "whiplash",
+    "title": "Whiplash",
+    "aliases": [],
+    "year": 2014,
+    "embeddingText": "Title: Whiplash. Type: movie. Year: 2014. Genres: music drama, psychological drama. Themes: ambition, abuse, perfectionism, mentorship, jazz drumming, obsession with greatness. Cast and creators: Miles Teller, J. K. Simmons, Damien Chazelle. Cultural signals: not my tempo, brutal music conservatory, final drum solo."
+  },
+  {
+    "id": "the-truman-show",
+    "title": "The Truman Show",
+    "aliases": [],
+    "year": 1998,
+    "embeddingText": "Title: The Truman Show. Type: movie. Year: 1998. Genres: satirical drama, science fiction adjacent, comedy drama. Themes: reality television, surveillance, artificial world, free will, performance, escape from scripted life. Cast and creators: Jim Carrey, Ed Harris, Peter Weir. Cultural signals: Seahaven, hidden cameras, dome sky, good afternoon good evening and good night."
+  }
+]

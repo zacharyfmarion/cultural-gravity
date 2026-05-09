@@ -1,0 +1,93 @@
+name: Cultural Gravity Daily Data
+
+on:
+  schedule:
+    - cron: "20 10 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: cultural-gravity-pages
+  cancel-in-progress: false
+
+jobs:
+  update-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      CG_EMBEDDING_MODEL: text-embedding-3-large
+      CG_EMBEDDING_DIMENSIONS: "1024"
+      CG_TARGET_CATALOG_SIZE: "100000"
+      CG_ANSWER_POOL_SIZE: "10000"
+      CG_DAILY_WINDOW_DAYS: "7"
+      CG_TMDB_CONCURRENCY: "8"
+      CG_TMDB_DETAIL_LIMIT: "10000"
+      CG_EMBEDDING_BATCH_SIZE: "64"
+      CG_MIN_CANDIDATE_POPULARITY: "1"
+      CG_MIN_CATALOG_RELEASE_YEAR: "1900"
+      CG_MIN_CATALOG_VOTE_COUNT: "10"
+      CG_MIN_CATALOG_POPULARITY: "0.1"
+      CG_MIN_ANSWER_RELEASE_YEAR: "1990"
+      CG_MIN_ANSWER_VOTE_COUNT: "2000"
+      CG_MIN_ANSWER_POPULARITY: "8"
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+      VITE_BASE_PATH: /${{ github.event.repository.name }}/
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Activate pnpm
+        run: corepack prepare pnpm@8.6.0 --activate
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Restore movie catalog and vector cache
+        uses: actions/cache@v4
+        with:
+          path: .cache/cultural-gravity
+          key: cultural-gravity-v1-${{ env.CG_EMBEDDING_MODEL }}-${{ env.CG_EMBEDDING_DIMENSIONS }}-${{ github.run_id }}
+          restore-keys: |
+            cultural-gravity-v1-${{ env.CG_EMBEDDING_MODEL }}-${{ env.CG_EMBEDDING_DIMENSIONS }}-
+
+      - name: Generate daily data
+        run: pnpm update:daily
+
+      - name: Verify
+        run: |
+          pnpm typecheck
+          pnpm validate:puzzles
+          pnpm validate:generated
+          pnpm build
+
+      - name: Commit generated static data
+        run: |
+          if git diff --quiet -- apps/arcade/public/data; then
+            echo "No generated data changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps/arcade/public/data
+          git commit -m "Update Cultural Gravity daily data"
+          git push
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/arcade/dist
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4

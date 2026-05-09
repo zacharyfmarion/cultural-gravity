@@ -1,0 +1,23 @@
+{
+  "name": "daily-game-lab",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@8.6.0",
+  "scripts": {
+    "dev": "pnpm --filter @daily-game-lab/arcade dev",
+    "build": "pnpm -r build",
+    "sync:movies": "node scripts/cultural-gravity.mjs sync-catalog",
+    "embed:movies": "node scripts/cultural-gravity.mjs embed-missing",
+    "generate:daily": "node scripts/cultural-gravity.mjs generate-daily",
+    "validate:generated": "node scripts/cultural-gravity.mjs validate-public",
+    "update:daily": "node scripts/cultural-gravity.mjs update",
+    "seed:local": "node scripts/cultural-gravity.mjs seed-from-local",
+    "typecheck": "pnpm -r typecheck",
+    "validate:puzzles": "pnpm --filter @daily-game-lab/prototype-registry validate:puzzles"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "typescript": "^5.8.3"
+  }
+}

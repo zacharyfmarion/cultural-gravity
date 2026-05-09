@@ -1,0 +1,21 @@
+{
+  "name": "@daily-game-lab/prototype-registry",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "validate:puzzles": "tsx src/validate-puzzles.ts"
+  },
+  "dependencies": {
+    "@daily-game-lab/game-core": "workspace:*",
+    "@daily-game-lab/prototype-pop-culture-path": "workspace:*",
+    "tsx": "^4.19.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

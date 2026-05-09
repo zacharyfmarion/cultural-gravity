@@ -1,0 +1,303 @@
+:root {
+  color: #18201d;
+  background: #f4f2ea;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled,
+input:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.game-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  color: #f8f7f1;
+  background: #16201c;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 36px;
+  font-weight: 800;
+}
+
+.brand svg {
+  width: 22px;
+  height: 22px;
+  color: #f0c05a;
+}
+
+.game-note {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+  color: #dbe5de;
+  text-align: left;
+  background: #202c27;
+  border: 1px solid #33413a;
+  border-radius: 8px;
+  line-height: 1.4;
+}
+
+.game-note strong {
+  font-weight: 800;
+}
+
+.game-note span {
+  color: #aebdb5;
+}
+
+.game-surface {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+  width: min(920px, 100%);
+  padding: 30px;
+}
+
+.play-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: start;
+}
+
+.play-header h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 7vw, 5.5rem);
+  line-height: 0.95;
+}
+
+.play-header p {
+  max-width: 62ch;
+  margin: 10px 0 0;
+  color: #526158;
+  line-height: 1.5;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: #976c14;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.score-strip {
+  display: grid;
+  place-items: center;
+  min-width: 92px;
+  padding: 14px;
+  color: #f8f7f1;
+  background: #305c4b;
+  border-radius: 8px;
+}
+
+.score-strip span {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.score-strip small {
+  color: #d0e1d9;
+}
+
+.puzzle-band {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px;
+  background: #ffffff;
+  border: 1px solid #dedbd0;
+  border-radius: 8px;
+}
+
+.puzzle-band h2 {
+  margin: 8px 0 0;
+  font-size: 1.2rem;
+}
+
+.date-chip,
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  color: #3f4c44;
+  background: #ebe7da;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.status-pill {
+  color: #f8f7f1;
+  background: #59665f;
+}
+
+.status-pill.solved {
+  background: #2f7d53;
+}
+
+.status-pill.ended {
+  background: #a44235;
+}
+
+.guess-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+}
+
+.guess-form input {
+  min-height: 54px;
+  padding: 0 16px;
+  color: #18201d;
+  background: #ffffff;
+  border: 1px solid #c7c3b6;
+  border-radius: 8px;
+  outline: none;
+}
+
+.guess-form input:focus {
+  border-color: #2f7d53;
+  box-shadow: 0 0 0 3px rgb(47 125 83 / 18%);
+}
+
+.guess-form button,
+.icon-button {
+  min-height: 44px;
+  padding: 0 16px;
+  color: #f8f7f1;
+  background: #18201d;
+  border: 0;
+  border-radius: 8px;
+  font-weight: 850;
+}
+
+.tool-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.icon-button {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.icon-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.history {
+  display: grid;
+  gap: 8px;
+}
+
+.empty-state,
+.guess-row {
+  display: grid;
+  gap: 4px;
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid #dedbd0;
+  border-radius: 8px;
+}
+
+.empty-state span,
+.guess-row span {
+  color: #647069;
+  line-height: 1.4;
+}
+
+.guess-row {
+  grid-template-columns: minmax(0, 1fr) minmax(54px, auto);
+  align-items: center;
+  border-left-width: 6px;
+}
+
+.guess-row output {
+  font-weight: 900;
+}
+
+.guess-row.cold {
+  border-left-color: #7d8a94;
+}
+
+.guess-row.warm {
+  border-left-color: #d48b39;
+}
+
+.guess-row.hot {
+  border-left-color: #d05844;
+}
+
+.guess-row.exact {
+  border-left-color: #2f7d53;
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .game-rail {
+    padding: 16px;
+  }
+
+  .game-surface {
+    padding: 20px 16px 28px;
+  }
+
+  .play-header,
+  .guess-form {
+    grid-template-columns: 1fr;
+  }
+
+  .score-strip {
+    width: 100%;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    gap: 8px;
+  }
+}
